@@ -1,0 +1,36 @@
+.ExhibitsBlock {
+  transition: transform .3s, box-shadow .3s;
+  transform: translateX(0) translateY(0);
+  height: 280px;
+  @apply bg-primary-grey rounded;
+  box-shadow: 6px 5px 5px #262626;
+
+  &:hover {
+    transition: transform .3s, box-shadow .3s;
+    transform: translateX(-5px) translateY(-5px);
+    padding-right: 20px;
+    box-shadow: 8px 10px 10px #262626;
+    @apply cursor-pointer;
+  }
+}
+
+.Image {
+  width: 250px;
+
+  img {
+    border-radius: 5px;
+    height: auto;
+    max-height: 260px;
+  }
+}
+
+.Content {
+  padding: 10px;
+  display: flex;
+}
+
+.Text {
+  margin-left: 20px;
+  font-size: 28px;
+  color: #DFF8EB;
+}

@@ -1,0 +1,81 @@
+GET http://oop.cw.local/exhibit/all
+Accept: application/json
+
+###
+
+GET http://oop.cw.local/exhibit/getOne?id=1
+Accept: application/json
+
+###
+
+POST http://oop.cw.local/admin/create
+Content-Type: application/json
+
+{
+  "login": "",
+  "password": ""
+}
+
+###
+
+POST http://oop.cw.local/auth/signinadmin
+Content-Type: application/json
+
+{
+  "login": "reagento",
+  "password": "reagento"
+}
+
+###
+
+POST http://oop.cw.local/auth/validateToken
+Content-Type: application/json
+
+{
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6InJlYWdlbnRvIiwicGFzc3dvcmQiOiJyZWFnZW50byIsImlhdCI6MTYxMzMyNDA2MiwiZXhwIjoxNjEzMzI0MzYyfQ.eUqyWGsi5Mnc5wN4HdtGoHj29dq2fFK2dYtQEecjgZo"
+}
+
+###
+
+POST http://oop.cw.local/exhibit/createOne
+Content-Type: application/json
+
+{
+  "name": "test",
+  "sku": "0001",
+  "type_id": 0
+}
+
+###
+
+POST http://oop.cw.local/exhibit/deleteOne
+Content-Type: application/json
+
+{
+  "id": 4
+}
+
+###
+
+POST http://oop.cw.local/author/deleteOne
+Content-Type: application/json
+
+{
+  "id": 1
+}
+
+###
+
+POST http://oop.cw.local/epoch/createOne
+Content-Type: application/json
+
+{
+  "id": 0,
+  "label": "root",
+  "description": "",
+  "image": ""
+}
+
+###
+
+

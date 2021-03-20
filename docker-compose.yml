@@ -1,0 +1,63 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:${NGNIX_VERSION}
+    depends_on:
+      - app
+    links:
+      - app:app
+    restart: on-failure:30
+    env_file:
+      - .env
+    volumes:
+    - ./deploy/shared/config/nginx/templates:/etc/nginx/templates
+    networks:
+      - default
+    expose:
+      - ${NGINX_BIND_PORT}
+    ports:
+      - ${NGINX_BIND_PORT}:${NGINX_BIND_PORT}
+  mongo:
+    image: mongo:${MONGO_VERSION}
+    env_file:
+      - .env
+    networks:
+      - default
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_DATABASE}
+    ports:
+    - ${MONGO_PORT}:${MONGO_PORT}
+    volumes:
+    - ./deploy/shared/data/mongodb:/data/db
+  mysql:
+    image: mysql:${MYSQL_VERSION}
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    networks:
+      - default
+    env_file:
+      - .env
+    volumes:
+    - ./deploy/shared/data/mysql:/var/lib/mysql
+    ports:
+      - ${MYSQL_PORT}:${MYSQL_PORT}
+  app:
+    build:
+      context: .
+      target: app
+    networks:
+      - default
+    volumes:
+      - ./src/app:/usr/src/app
+    env_file:
+      - .env
+    expose:
+      - ${BACKEND_PORT}
+
+networks:
+  default:
+    driver: bridge

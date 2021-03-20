@@ -1,0 +1,15 @@
+.WelcomeBlock {
+  height: 200px;
+  @apply bg-primary-red text-primary-white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 48px;
+  border-radius: 5px;
+}
+
+.Home {
+  min-height: calc(100vh - 80px);
+  padding-top: 20px;
+  @apply bg-primary-creme;
+}

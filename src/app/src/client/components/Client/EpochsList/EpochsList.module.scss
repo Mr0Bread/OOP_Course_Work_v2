@@ -1,0 +1,15 @@
+@import "src/client/styles/abstract/variables";
+
+.EpochsList {
+  min-height: calc(100vh - #{ $header-height });
+  @apply bg-primary-creme text-primary-black;
+}
+
+.Loader {
+  min-height: calc(100vh - #{ $header-height });
+  @apply bg-primary-creme flex justify-center items-center;
+}
+
+.CardsContainer {
+  @apply pt-6;
+}

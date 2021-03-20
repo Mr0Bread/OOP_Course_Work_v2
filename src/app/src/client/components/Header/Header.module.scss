@@ -1,0 +1,29 @@
+@import "src/client/styles/abstract/variables";
+
+.Header {
+  height: $header-height;
+  @apply flex items-center bg-primary-black text-primary-white;
+
+  nav {
+    max-width: 1400px;
+    width: 100%;
+    padding: 0 20px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    @apply text-xl;
+  }
+}
+
+.LinkWrapper {
+  transition: transform .3s, box-shadow .3s;
+  @apply p-2 rounded flex items-center justify-center bg-primary-black;
+
+  &:hover {
+    transition: transform .3s, box-shadow .3s;
+    transform: translateX(-5px) translateY(-5px);
+    //background: darken($primary-black, 10%);
+    box-shadow: 8px 8px 8px black;
+    border: 1px solid $primary-white;
+  }
+}

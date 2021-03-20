@@ -1,0 +1,6 @@
+@import "src/client/styles/abstract/variables";
+
+.Page {
+  min-height: calc(100vh - #{ $header-height });
+  @apply bg-primary-creme;
+}

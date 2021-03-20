@@ -1,0 +1,10 @@
+.Container {
+  min-height: 320px;
+  @apply  bg-primary-grey rounded;
+}
+
+.Image {
+  @apply rounded;
+  min-height: 220px;
+  padding: 10px;
+}

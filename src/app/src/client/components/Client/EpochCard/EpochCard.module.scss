@@ -1,0 +1,8 @@
+@import "src/client/styles/abstract/variables";
+
+.EpochCard {
+  width: 200px;
+  height: 120px;
+  @apply bg-primary-black text-primary-white rounded border flex justify-center items-center;
+  box-shadow: 5px 5px 5px $primary-black;
+}
