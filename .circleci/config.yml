@@ -12,7 +12,7 @@ jobs:
           install-yarn: false
       - run: node --version
       - node/install-packages:
-          app-dir: ./../src/app
+          app-dir: ./../../src/app
 workflows:
   test-my-app:
     jobs:
