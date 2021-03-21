@@ -1,9 +1,4 @@
-import {
-  ArgumentMetadata,
-  BadRequestException,
-  Injectable,
-  PipeTransform,
-} from '@nestjs/common';
+import { BadRequestException, Injectable, PipeTransform } from '@nestjs/common';
 import { AdminService } from 'Server/modules/admin/admin.service';
 import {
   ADMIN_LOGIN_MAX_LENGTH,
@@ -14,7 +9,7 @@ import {
 export default class ValidateLoginPipe implements PipeTransform {
   constructor(private readonly adminService: AdminService) {}
 
-  async transform(value: string, metadata: ArgumentMetadata): Promise<string> {
+  async transform(value: string): Promise<string> {
     if (
       value.length < ADMIN_LOGIN_MIN_LENGTH ||
       value.length > ADMIN_LOGIN_MAX_LENGTH

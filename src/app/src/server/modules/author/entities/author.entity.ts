@@ -37,7 +37,7 @@ export class AuthorEntity implements AuthorInterface {
   @Column({ default: 0 })
   epoch_id: number;
 
-  @ManyToOne((type) => EpochEntity, (epoch) => epoch.authors)
+  @ManyToOne(() => EpochEntity, (epoch) => epoch.authors)
   @JoinColumn()
   epoch: EpochEntity;
 }

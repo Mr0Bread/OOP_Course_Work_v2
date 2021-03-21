@@ -1,9 +1,4 @@
-import {
-  ArgumentMetadata,
-  BadRequestException,
-  Injectable,
-  PipeTransform,
-} from '@nestjs/common';
+import { BadRequestException, Injectable, PipeTransform } from '@nestjs/common';
 import {
   CUSTOMER_LOGIN_MAX_LENGTH,
   CUSTOMER_LOGIN_MIN_LENGTH,
@@ -14,7 +9,7 @@ import { CustomerService } from 'Server/modules/customer/customer.service';
 export default class ValidateCustomerLoginPipe implements PipeTransform {
   constructor(private readonly customerService: CustomerService) {}
 
-  async transform(value: string, metadata: ArgumentMetadata): Promise<string> {
+  async transform(value: string): Promise<string> {
     if (
       value.length > CUSTOMER_LOGIN_MAX_LENGTH ||
       value.length < CUSTOMER_LOGIN_MIN_LENGTH
