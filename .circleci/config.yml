@@ -11,6 +11,7 @@ jobs:
       - node/install:
           install-yarn: false
       - run: node --version
+      - node/install-packages
 workflows:
   test-my-app:
     jobs:
