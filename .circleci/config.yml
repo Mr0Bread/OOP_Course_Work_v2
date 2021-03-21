@@ -12,9 +12,7 @@ jobs:
           install-yarn: false
       - run: node --version
       - run: ls
-      - run: cd src/app/ \
-            && ls \
-            && npm ci
+      - run: cd src/app/ && npm ci
       - run: ls
 workflows:
   test-my-app:
