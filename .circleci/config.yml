@@ -12,8 +12,8 @@ jobs:
           install-yarn: false
       - run: node --version
       - run: ls
-      - node/install-packages:
-          app-dir: ./src/app
+      - run: cd src/app/
+      - run: ls
 workflows:
   test-my-app:
     jobs:
