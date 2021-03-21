@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as session from 'express-session';
+import ADMIN_ROUTES from 'Server/constants/routes';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
