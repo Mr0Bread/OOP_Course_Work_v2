@@ -8,33 +8,38 @@ import InvalidTransactionException from 'Server/exceptions/InvalidTransaction';
 @Injectable()
 export class ExhibitService {
   constructor(
-	private readonly connection: Connection,
-	@InjectRepository(ExhibitEntity)
-	private readonly exhibitRepository: Repository<ExhibitEntity>
-  ) {
-  }
+    private readonly connection: Connection,
+    @InjectRepository(ExhibitEntity)
+    private readonly exhibitRepository: Repository<ExhibitEntity>,
+  ) {}
 
   async createOne(exhibit: ExhibitEntity) {
-	try {
-	  await this.exhibitRepository.save(exhibit);
-	} catch (e) {
-	  console.log(e);
-	  throw new BadRequestException({ statusCode: 400, message: 'Error during creating new entry' });
-	}
+    try {
+      await this.exhibitRepository.save(exhibit);
+    } catch (e) {
+      console.log(e);
+      throw new BadRequestException({
+        statusCode: 400,
+        message: 'Error during creating new entry',
+      });
+    }
   }
 
   async deleteOneById(id: number) {
     try {
-	  await this.exhibitRepository.delete(id);
-	} catch (e) {
-	  throw new BadRequestException({ statusCode: 400, message: 'Error during deleting entry' });
-	}
+      await this.exhibitRepository.delete(id);
+    } catch (e) {
+      throw new BadRequestException({
+        statusCode: 400,
+        message: 'Error during deleting entry',
+      });
+    }
   }
 
   async getAll() {
-	const result = await this.exhibitRepository.find();
+    const result = await this.exhibitRepository.find();
 
-	return result;
+    return result;
   }
 
   async getOneById(id: number) {
@@ -43,11 +48,11 @@ export class ExhibitService {
     return result;
   }
 
-	async updateOne(exhibitData: ExhibitInterface) {
-		try {
-			await this.exhibitRepository.update(exhibitData.id, exhibitData);
-		} catch (e) {
-			throw new InvalidTransactionException();
-		}
-	}
+  async updateOne(exhibitData: ExhibitInterface) {
+    try {
+      await this.exhibitRepository.update(exhibitData.id, exhibitData);
+    } catch (e) {
+      throw new InvalidTransactionException();
+    }
+  }
 }

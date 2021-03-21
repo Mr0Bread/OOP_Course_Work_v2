@@ -5,17 +5,15 @@ import ValidatePasswordPipe from 'Server/modules/admin/pipes/ValidatePassword.pi
 
 @Controller('admin')
 export class AdminController {
-    constructor(
-      private readonly adminService: AdminService
-    ) {}
+  constructor(private readonly adminService: AdminService) {}
 
-    @Post('create')
-    async createAdmin(
-      @Body('login', ValidateLoginPipe) login: string,
-      @Body('password', ValidatePasswordPipe) password: string
-    ) {
-        const result = await this.adminService.createAdmin(login, password);
+  @Post('create')
+  async createAdmin(
+    @Body('login', ValidateLoginPipe) login: string,
+    @Body('password', ValidatePasswordPipe) password: string,
+  ) {
+    const result = await this.adminService.createAdmin(login, password);
 
-        return result;
-    }
+    return result;
+  }
 }

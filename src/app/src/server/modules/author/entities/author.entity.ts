@@ -1,4 +1,10 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import AuthorInterface from 'Server/modules/author/interfaces/author.interface';
 import { EpochEntity } from 'Server/modules/epoch/entities/epoch.entity';
 
@@ -31,7 +37,7 @@ export class AuthorEntity implements AuthorInterface {
   @Column({ default: 0 })
   epoch_id: number;
 
-  @ManyToOne(type => EpochEntity, epoch => epoch.authors)
+  @ManyToOne((type) => EpochEntity, (epoch) => epoch.authors)
   @JoinColumn()
   epoch: EpochEntity;
 }

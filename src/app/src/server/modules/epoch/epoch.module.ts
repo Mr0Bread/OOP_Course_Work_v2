@@ -9,19 +9,12 @@ import { SecureRootMiddleware } from 'Server/modules/auth/middleware/SecureRoot.
 @Module({
   controllers: [EpochController],
   providers: [EpochService],
-  imports: [
-    TypeOrmModule.forFeature([EpochEntity]),
-    AuthModule
-  ]
+  imports: [TypeOrmModule.forFeature([EpochEntity]), AuthModule],
 })
 export class EpochModule implements NestModule {
   configure(consumer: MiddlewareConsumer): any {
     consumer
       .apply(SecureRootMiddleware)
-      .forRoutes(
-        '/epoch/createOne',
-        '/epoch/deleteOne',
-        '/epoch/updateOne'
-      );
+      .forRoutes('/epoch/createOne', '/epoch/deleteOne', '/epoch/updateOne');
   }
 }

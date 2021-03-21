@@ -1,13 +1,15 @@
-import { HttpException, HttpStatus, Injectable, NestMiddleware } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  NestMiddleware,
+} from '@nestjs/common';
 import { NextFunction, Request, Response } from 'express';
 import { AuthService } from 'Server/modules/auth/auth.service';
 
 @Injectable()
 export class SecureRootMiddleware implements NestMiddleware {
-  constructor(
-    private readonly authService: AuthService
-  ) {
-  }
+  constructor(private readonly authService: AuthService) {}
 
   async use(req: Request, res: Response, next: NextFunction): Promise<any> {
     const { session } = req;

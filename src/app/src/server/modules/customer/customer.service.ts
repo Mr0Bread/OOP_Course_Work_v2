@@ -8,44 +8,43 @@ import { compare, hashString } from 'Server/utils/Auth';
 @Injectable()
 export class CustomerService {
   constructor(
-	@InjectRepository(CustomerEntity)
-	private readonly customerRepository: Repository<CustomerEntity>
-  ) {
-  }
+    @InjectRepository(CustomerEntity)
+    private readonly customerRepository: Repository<CustomerEntity>,
+  ) {}
 
   async createCustomer(login, password) {
-	const hashedPassword = await hashString(password);
+    const hashedPassword = await hashString(password);
 
-	try {
-	  await this.customerRepository.save({ login, password: hashedPassword });
-	} catch (e) {
-	  throw new InvalidTransactionException();
-	}
+    try {
+      await this.customerRepository.save({ login, password: hashedPassword });
+    } catch (e) {
+      throw new InvalidTransactionException();
+    }
   }
 
   async getCustomerByLogin(login: string) {
-	try {
-	  const customer = await this.customerRepository.findOne({ login });
+    try {
+      const customer = await this.customerRepository.findOne({ login });
 
-	  return customer;
-	} catch (e) {
-	  throw new InvalidTransactionException();
-	}
+      return customer;
+    } catch (e) {
+      throw new InvalidTransactionException();
+    }
   }
 
   async authenticate(login, password) {
-	const { password: hashedPassword } = await this.getCustomerByLogin(login);
+    const { password: hashedPassword } = await this.getCustomerByLogin(login);
 
-	if (!(await compare(password, hashedPassword))) {
-	  throw new BadRequestException();
-	}
+    if (!(await compare(password, hashedPassword))) {
+      throw new BadRequestException();
+    }
   }
 
   async doesCustomerExist(login: string): Promise<boolean> {
     try {
-	  return !!(await this.customerRepository.find({ login })).length;
-	} catch (e) {
-	  throw new InvalidTransactionException();
-	}
+      return !!(await this.customerRepository.find({ login })).length;
+    } catch (e) {
+      throw new InvalidTransactionException();
+    }
   }
 }

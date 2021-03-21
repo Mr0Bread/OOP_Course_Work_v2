@@ -5,33 +5,28 @@ import ExhibitInterface from 'Server/modules/exhibit/interfaces/exhibit.interfac
 
 @Controller('exhibit')
 export class ExhibitController {
-  constructor(
-	private readonly exhibitService: ExhibitService
-  ) {
-  }
+  constructor(private readonly exhibitService: ExhibitService) {}
 
   @Post('createOne')
   async createOne(
-	@Body('name') name: string,
-	@Body('sku') sku: string,
-	@Body('type_id') type_id: number,
-	@Body('image') image: string,
-	@Body('description') description: string,
-	@Body() body
+    @Body('name') name: string,
+    @Body('sku') sku: string,
+    @Body('type_id') type_id: number,
+    @Body('image') image: string,
+    @Body('description') description: string,
+    @Body() body,
   ) {
-	console.log(body);
-	await this.exhibitService.createOne(
-	  {
-		name,
-		sku,
-		type_id,
-		id: 0,
-		image,
-		description
-	  }
-	);
+    console.log(body);
+    await this.exhibitService.createOne({
+      name,
+      sku,
+      type_id,
+      id: 0,
+      image,
+      description,
+    });
 
-	return { message: 'success' };
+    return { message: 'success' };
   }
 
   @Get('getAll')
@@ -42,32 +37,28 @@ export class ExhibitController {
   }
 
   @Post('deleteOne')
-  async deleteOne(
-    @Body('id') id: number
-  ) {
-	await this.exhibitService.deleteOneById(id);
+  async deleteOne(@Body('id') id: number) {
+    await this.exhibitService.deleteOneById(id);
 
-	return { message: 'success', statusCode: 200 }
+    return { message: 'success', statusCode: 200 };
   }
 
   @Get('getOne')
-  async getOne(
-    @Query('id') id: number
-  ) {
-	const result = await this.exhibitService.getOneById(id);
+  async getOne(@Query('id') id: number) {
+    const result = await this.exhibitService.getOneById(id);
 
-	return result;
+    return result;
   }
 
   @Post('updateOne')
-	async updateOne(
-		@Body() exhibitData: ExhibitInterface
-	): Promise<BasicResponseInterface> {
-		await this.exhibitService.updateOne(exhibitData);
+  async updateOne(
+    @Body() exhibitData: ExhibitInterface,
+  ): Promise<BasicResponseInterface> {
+    await this.exhibitService.updateOne(exhibitData);
 
-		return {
-			statusCode: HttpStatus.CREATED,
-			message: 'Success'
-		};
-	}
+    return {
+      statusCode: HttpStatus.CREATED,
+      message: 'Success',
+    };
+  }
 }

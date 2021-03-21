@@ -6,13 +6,11 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.use(
-    session(
-      {
-        secret: 'my-secret',
-        resave: false,
-        saveUninitialized: false
-      }
-    )
+    session({
+      secret: 'my-secret',
+      resave: false,
+      saveUninitialized: false,
+    }),
   );
 
   await app.listen(process.env.BACKEND_PORT, '0.0.0.0');

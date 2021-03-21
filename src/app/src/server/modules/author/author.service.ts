@@ -9,49 +9,48 @@ import InvalidTransactionException from 'Server/exceptions/InvalidTransaction';
 export class AuthorService {
   constructor(
     @InjectRepository(AuthorEntity)
-	private readonly authorRepository: Repository<AuthorEntity>
-  ) {
-  }
+    private readonly authorRepository: Repository<AuthorEntity>,
+  ) {}
 
   async createOne(author: AuthorInterface) {
-	try {
-	  await this.authorRepository.save(author);
-	} catch (e) {
-	  throw new InvalidTransactionException();
-	}
+    try {
+      await this.authorRepository.save(author);
+    } catch (e) {
+      throw new InvalidTransactionException();
+    }
   }
 
   async getAll() {
-	const result = await this.authorRepository.find();
+    const result = await this.authorRepository.find();
 
-	return result;
+    return result;
   }
 
   async deleteOneById(id: number) {
-	try {
-	  await this.authorRepository.delete(id);
-	} catch (e) {
-	  throw new InvalidTransactionException();
-	}
+    try {
+      await this.authorRepository.delete(id);
+    } catch (e) {
+      throw new InvalidTransactionException();
+    }
   }
 
-	async getOne(id: number) {
-		try {
-			const result = await this.authorRepository.findOne(id);
+  async getOne(id: number) {
+    try {
+      const result = await this.authorRepository.findOne(id);
 
-			return result;
-		} catch (e) {
-			console.log(e);
-			throw new InvalidTransactionException();
-		}
-	}
+      return result;
+    } catch (e) {
+      console.log(e);
+      throw new InvalidTransactionException();
+    }
+  }
 
-	async updateOne(authorData: AuthorInterface) {
-		try {
-			await this.authorRepository.update(authorData.id, authorData);
-		} catch (e) {
-			console.log(e);
-			throw new InvalidTransactionException();
-		}
-	}
+  async updateOne(authorData: AuthorInterface) {
+    try {
+      await this.authorRepository.update(authorData.id, authorData);
+    } catch (e) {
+      console.log(e);
+      throw new InvalidTransactionException();
+    }
+  }
 }

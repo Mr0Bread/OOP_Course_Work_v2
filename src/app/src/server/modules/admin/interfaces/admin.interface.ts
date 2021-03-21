@@ -1,4 +1,4 @@
 export default interface AdminInterface {
-    login: string;
-    password: string;
+  login: string;
+  password: string;
 }

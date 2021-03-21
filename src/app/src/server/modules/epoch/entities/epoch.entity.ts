@@ -16,6 +16,6 @@ export class EpochEntity implements EpochInterface {
   @Column()
   label: string;
 
-  @OneToMany(type => AuthorEntity, author => author.epoch)
+  @OneToMany((type) => AuthorEntity, (author) => author.epoch)
   authors: AuthorEntity[];
 }

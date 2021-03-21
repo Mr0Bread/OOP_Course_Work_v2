@@ -9,19 +9,12 @@ import { AuthModule } from 'Server/modules/auth/auth.module';
 @Module({
   providers: [TypeService],
   controllers: [TypeController],
-  imports: [
-    TypeOrmModule.forFeature([TypeEntity]),
-    AuthModule
-  ]
+  imports: [TypeOrmModule.forFeature([TypeEntity]), AuthModule],
 })
 export class TypeModule implements NestModule {
   configure(consumer: MiddlewareConsumer): any {
     consumer
       .apply(SecureRootMiddleware)
-      .forRoutes(
-        '/type/createOne',
-        '/type/updateOne',
-        '/type/deleteOne'
-      );
+      .forRoutes('/type/createOne', '/type/updateOne', '/type/deleteOne');
   }
 }

@@ -11,13 +11,11 @@ import { CustomerModule } from 'Server/modules/customer/customer.module';
   imports: [
     AdminModule,
     CustomerModule,
-    JwtModule.register(
-      {
-        secret: process.env.JWT_SECRET,
-        signOptions: { expiresIn: '300s' }
-      }
-    )
+    JwtModule.register({
+      secret: process.env.JWT_SECRET,
+      signOptions: { expiresIn: '300s' },
+    }),
   ],
-  exports: [AuthService]
+  exports: [AuthService],
 })
 export class AuthModule {}

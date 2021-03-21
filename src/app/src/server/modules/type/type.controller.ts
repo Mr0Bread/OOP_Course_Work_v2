@@ -6,56 +6,46 @@ import { TypeEntity } from 'Server/modules/type/entities/type.entity';
 
 @Controller('type')
 export class TypeController {
-	constructor(
-		private readonly typeService: TypeService
-	) {
-	}
+  constructor(private readonly typeService: TypeService) {}
 
-	@Get('getAll')
-	async getAll() {
-		const result = await this.typeService.getAll();
+  @Get('getAll')
+  async getAll() {
+    const result = await this.typeService.getAll();
 
-		return result;
-	}
+    return result;
+  }
 
-	@Post('createOne')
-	async createOne(
-		@Body('id') id: number,
-		@Body('label') label: string
-	) {
-		await this.typeService.createOne({ id, label });
+  @Post('createOne')
+  async createOne(@Body('id') id: number, @Body('label') label: string) {
+    await this.typeService.createOne({ id, label });
 
-		return { message: 'success' };
-	}
+    return { message: 'success' };
+  }
 
-	@Post('deleteOne')
-	async deleteOne(
-		@Body('id') id: number
-	): Promise<BasicResponseInterface> {
-		await this.typeService.deleteOneById(id);
+  @Post('deleteOne')
+  async deleteOne(@Body('id') id: number): Promise<BasicResponseInterface> {
+    await this.typeService.deleteOneById(id);
 
-		return { message: 'Success', statusCode: HttpStatus.CREATED };
-	}
+    return { message: 'Success', statusCode: HttpStatus.CREATED };
+  }
 
-	@Get('getOne')
-	async getOne(
-		@Query('id') id: number
-	) {
-		console.log(id);
-		const result = await this.typeService.getOneById(id);
+  @Get('getOne')
+  async getOne(@Query('id') id: number) {
+    console.log(id);
+    const result = await this.typeService.getOneById(id);
 
-		return result;
-	}
+    return result;
+  }
 
-	@Post('updateOne')
-	async updateOne(
-		@Body() typeData: TypeInterface
-	): Promise<BasicResponseInterface> {
-		await this.typeService.updateOne(typeData as TypeEntity);
+  @Post('updateOne')
+  async updateOne(
+    @Body() typeData: TypeInterface,
+  ): Promise<BasicResponseInterface> {
+    await this.typeService.updateOne(typeData as TypeEntity);
 
-		return {
-			message: 'Record updated',
-			statusCode: HttpStatus.CREATED
-		};
-	}
+    return {
+      message: 'Record updated',
+      statusCode: HttpStatus.CREATED,
+    };
+  }
 }

@@ -7,21 +7,18 @@ import { SecureRootMiddleware } from 'Server/modules/auth/middleware/SecureRoot.
 import { AuthModule } from 'Server/modules/auth/auth.module';
 
 @Module({
-	imports: [
-		TypeOrmModule.forFeature([ExhibitEntity]),
-		AuthModule
-	],
-	providers: [ExhibitService],
-	controllers: [ExhibitController]
+  imports: [TypeOrmModule.forFeature([ExhibitEntity]), AuthModule],
+  providers: [ExhibitService],
+  controllers: [ExhibitController],
 })
 export class ExhibitModule implements NestModule {
-	configure(consumer: MiddlewareConsumer): any {
-		consumer
-			.apply(SecureRootMiddleware)
-			.forRoutes(
-				'/exhibit/createOne',
-				'/exhibit/deleteOne',
-				'/exhibit/updateOne'
-			);
-	}
+  configure(consumer: MiddlewareConsumer): any {
+    consumer
+      .apply(SecureRootMiddleware)
+      .forRoutes(
+        '/exhibit/createOne',
+        '/exhibit/deleteOne',
+        '/exhibit/updateOne',
+      );
+  }
 }
