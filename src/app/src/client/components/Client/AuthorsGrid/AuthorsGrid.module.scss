@@ -1,0 +1,15 @@
+@import "src/client/styles/abstract/variables";
+
+.Grid {
+
+}
+
+.Page {
+  min-height: calc(100vh - #{ $header-height });
+  @apply bg-primary-creme;
+}
+
+.LoaderContainer {
+  min-height: calc(100vh - #{ $header-height });
+  @apply flex justify-center items-center;
+}

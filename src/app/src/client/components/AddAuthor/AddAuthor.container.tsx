@@ -50,7 +50,8 @@ export default function AddAuthor() {
 					);
 				},
 				(err) => {
-
+					setIsLoading(false);
+					console.log('Error while fetching and processing list of epochs', err);
 				}
 			);
 	}, []);

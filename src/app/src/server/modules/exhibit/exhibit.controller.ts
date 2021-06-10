@@ -1,7 +1,8 @@
-import { Body, Controller, Get, HttpStatus, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, Post, Query, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { ExhibitService } from 'Server/modules/exhibit/exhibit.service';
 import BasicResponseInterface from 'Server/interfaces/basicResponse.interface';
 import ExhibitInterface from 'Server/modules/exhibit/interfaces/exhibit.interface';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('exhibit')
 export class ExhibitController {
